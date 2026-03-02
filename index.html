@@ -1,169 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lakshay | Hacker Mode</title>
-
 <style>
-:root{
-  --bg:#000;
-  --text:#00ff99;
-  --card-bg:rgba(0,0,0,0.7);
-}
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: monospace;
-}
-
-body{
-  background:black;
-  color:var(--text);
-  overflow:hidden;
-}
-
-/* MATRIX CANVAS */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-}
-
-/* 3D CARD */
-.container{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  perspective:1000px;
-}
-
+/* BIG RGB Neon Card */
 .card{
-  width:350px;
-  height:450px;
-  background:var(--card-bg);
-  backdrop-filter:blur(5px);
-  border:1px solid #00ff99;
-  border-radius:20px;
-  transform-style:preserve-3d;
-  transition:transform 0.5s;
-  padding:20px;
-  text-align:center;
+    position:relative;
+    padding:30px;
+    border-radius:25px;
+    background:#0f172a;
+    color:white;
+    z-index:1;
+    overflow:hidden;
 }
 
-.card:hover{
-  transform:rotateY(15deg) rotateX(10deg);
+/* Outer RGB Layer */
+.card::before{
+    content:"";
+    position:absolute;
+    top:-6px;
+    left:-6px;
+    right:-6px;
+    bottom:-6px;
+    border-radius:30px;
+    background:linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    background-size:400%;
+    z-index:-2;
+    animation:rgbMove 6s linear infinite;
+    filter:blur(8px);
 }
 
-h1{
-  margin-top:20px;
+/* Inner solid background */
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:25px;
+    background:#0f172a;
+    z-index:-1;
 }
 
-.chatbox{
-  margin-top:20px;
-  height:150px;
-  overflow-y:auto;
-  border:1px solid #00ff99;
-  padding:10px;
-  font-size:14px;
-  text-align:left;
+/* Animation */
+@keyframes rgbMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
-input{
-  width:100%;
-  padding:8px;
-  margin-top:10px;
-  background:black;
-  border:1px solid #00ff99;
-  color:#00ff99;
-}
-
-button{
-  margin-top:8px;
-  padding:5px 10px;
-  background:#00ff99;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
 </style>
-</head>
-<body>
-
-<canvas id="matrix"></canvas>
-
-<div class="container">
-  <div class="card">
-    <h1>Hi, I'm Lakshay 👾</h1>
-    <p>Grade 9 | Future AI Developer</p>
-
-    <div class="chatbox" id="chat"></div>
-    <input type="text" id="userInput" placeholder="Ask me something...">
-    <button onclick="chat()">Send</button>
-  </div>
-</div>
-
-<script>
-/* MATRIX RAIN EFFECT */
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = "アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize = 14;
-const columns = canvas.width/fontSize;
-const drops = [];
-
-for(let x=0; x<columns; x++)
-  drops[x]=1;
-
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.05)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#00ff99";
-  ctx.font=fontSize+"px monospace";
-  for(let i=0;i<drops.length;i++){
-    const text=letters.charAt(Math.floor(Math.random()*letters.length));
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-    if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
-      drops[i]=0;
-    drops[i]++;
-  }
-}
-setInterval(draw,33);
-
-/* MINI AI CHATBOT */
-function chat(){
-  let input=document.getElementById("userInput").value;
-  let chatbox=document.getElementById("chat");
-
-  if(input.trim()==="") return;
-
-  chatbox.innerHTML+="<div>> "+input+"</div>";
-
-  let response="I'm still learning 🤖";
-
-  input=input.toLowerCase();
-
-  if(input.includes("name")) response="My name is Lakshay!";
-  else if(input.includes("grade")) response="I'm in Grade 9.";
-  else if(input.includes("coding")) response="I love coding and technology!";
-  else if(input.includes("ai")) response="AI is the future 🚀";
-  else if(input.includes("hello")) response="Hello there 👋";
-
-  setTimeout(()=>{
-    chatbox.innerHTML+="<div>"+response+"</div>";
-    chatbox.scrollTop=chatbox.scrollHeight;
-  },500);
-
-  document.getElementById("userInput").value="";
-}
-</script>
-
-</body>
-</html>
