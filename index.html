@@ -1,67 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Lakshya | Web Developer</title>
-  <meta name="google-site-verification" content="X7ZiA-LFN9z5xmCHlVSKdp-QNUiFdZCUXlpbAMleGTw" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #1f2937;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        section {
-            background: white;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        footer {
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshay | Tech Explorer</title>
+
+<style>
+:root {
+    --bg: #0f172a;
+    --card: rgba(255,255,255,0.05);
+    --text: #ffffff;
+    --accent: #38bdf8;
+}
+
+.light-mode {
+    --bg: #f1f5f9;
+    --card: rgba(0,0,0,0.05);
+    --text: #0f172a;
+    --accent: #0ea5e9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.4s ease;
+    overflow-x: hidden;
+}
+
+/* Background Animation */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 20% 20%, var(--accent), transparent 40%);
+    animation: move 10s infinite alternate ease-in-out;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+@keyframes move {
+    from { transform: translate(0,0); }
+    to { transform: translate(-100px,-100px); }
+}
+
+/* Container */
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card);
+    backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 600px;
+    animation: fadeIn 1.5s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+h1 span {
+    color: var(--accent);
+}
+
+h2 {
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 15px 0;
+    line-height: 1.6;
+    font-size: 17px;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+/* Toggle Switch */
+.toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background: var(--card);
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive */
+@media(max-width: 600px) {
+    h1 { font-size: 34px; }
+    .card { padding: 30px 20px; }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>Hello, I am Lakshya</h1>
-    <p>I create simple websites using HTML & CSS</p>
-</header>
+<div class="toggle" onclick="toggleMode()">🌙 / ☀ Mode</div>
 
-<section>
-    <h2>About Me</h2>
-    <p>I am a Class 9 student learning web development. I make simple and clean websites for practice.</p>
-</section>
+<div class="container">
+    <div class="card">
+        <h1>Hi, I'm <span>Lakshay</span> 👋</h1>
+        <h2>Grade 9 Student | Future Tech Innovator</h2>
 
-<section>
-    <h2>Services</h2>
-    <ul>
-        <li>Simple Website</li>
-        <li>School / Tuition Website</li>
-        <li>Personal Portfolio</li>
-    </ul>
-</section>
+        <p>
+            I am passionate about coding and exploring the world of technology.
+            I love learning how websites, apps, and software are built.
+        </p>
 
-<section>
-    <h2>Contact Me</h2>
-    <p>WhatsApp: <b>ADD YOUR NUMBER HERE</b></p>
-</section>
+        <p>
+            Currently diving into HTML & CSS and dreaming big about becoming
+            a professional developer in the future.
+        </p>
 
-<footer>
-    <p>© 2025 Lakshya | Beginner Web Developer</p>
-</footer>
+        <a href="#" class="btn">Connect With Me</a>
+    </div>
+</div>
+
+<script>
+function toggleMode() {
+    document.body.classList.toggle("light-mode");
+}
+</script>
 
 </body>
 </html>
-
