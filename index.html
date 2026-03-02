@@ -1,17 +1,97 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshya Garg | Portfolio</title>
 
-/* BIG RGB Neon Card */
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+    position:sticky;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav h2{
+    color:#38bdf8;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* HERO */
+.hero{
+    height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:45px;
+}
+
+.hero span{
+    color:#38bdf8;
+}
+
+/* SECTION */
+section{
+    padding:80px 10%;
+}
+
+section h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+/* RGB NEON CARD */
 .card{
     position:relative;
     padding:30px;
     border-radius:25px;
     background:#0f172a;
-    color:white;
     z-index:1;
-    overflow:hidden;
+    margin-bottom:30px;
 }
 
-/* Outer RGB Layer */
 .card::before{
     content:"";
     position:absolute;
@@ -22,37 +102,191 @@
     border-radius:30px;
     background:linear-gradient(
         90deg,
-        #ff0000,
-        #ff7300,
-        #fffb00,
-        #48ff00,
-        #00ffd5,
-        #002bff,
-        #7a00ff,
-        #ff00c8,
-        #ff0000
+        red,orange,yellow,green,cyan,blue,violet,red
     );
     background-size:400%;
-    z-index:-2;
+    z-index:-1;
     animation:rgbMove 6s linear infinite;
     filter:blur(8px);
 }
 
-/* Inner solid background */
-.card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:25px;
-    background:#0f172a;
-    z-index:-1;
-}
-
-/* Animation */
 @keyframes rgbMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    0%{background-position:0%}
+    100%{background-position:400%}
 }
 
+/* SKILLS */
+.skill-box{
+    margin-bottom:25px;
+}
+
+.progress{
+    height:15px;
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#38bdf8,#6366f1);
+    transition:width 2s ease;
+}
+
+/* PROJECT GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* GALLERY */
+.gallery img{
+    width:100%;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* PARTICLES */
+#particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-2;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .hero h1{font-size:28px;}
+    nav ul{gap:10px;}
+}
 </style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+<h2>Lakshya</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#gallery">Gallery</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+<h1>Hello, I'm <span>Lakshya Garg</span></h1>
+<p>Class 9 Student | Future Software Engineer 🚀</p>
+</div>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="card">
+<p>I love coding, mathematics and building creative websites.</p>
+</div>
+</section>
+
+<section id="skills">
+<h2>My Skills</h2>
+
+<div class="skill-box">
+<p>HTML <span class="percent" data-target="85">0%</span></p>
+<div class="progress"><div class="progress-bar" data-width="85"></div></div>
+</div>
+
+<div class="skill-box">
+<p>CSS <span class="percent" data-target="75">0%</span></p>
+<div class="progress"><div class="progress-bar" data-width="75"></div></div>
+</div>
+
+<div class="skill-box">
+<p>Mathematics <span class="percent" data-target="90">0%</span></p>
+<div class="progress"><div class="progress-bar" data-width="90"></div></div>
+</div>
+
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="grid">
+<div class="card">Calculator Website</div>
+<div class="card">Science Exhibition Model</div>
+<div class="card">Portfolio Website</div>
+</div>
+</section>
+
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="grid gallery">
+<img src="https://picsum.photos/400?1">
+<img src="https://picsum.photos/400?2">
+<img src="https://picsum.photos/400?3">
+</div>
+</section>
+
+<script>
+/* SKILL ANIMATION */
+const skillsSection=document.querySelector("#skills");
+const bars=document.querySelectorAll(".progress-bar");
+const percents=document.querySelectorAll(".percent");
+let started=false;
+
+window.addEventListener("scroll",()=>{
+if(window.scrollY>skillsSection.offsetTop-400 && !started){
+bars.forEach(bar=>{
+bar.style.width=bar.dataset.width+"%";
+});
+percents.forEach(p=>{
+let count=0;
+let target=p.dataset.target;
+let interval=setInterval(()=>{
+if(count>=target){clearInterval(interval);}
+else{count++;p.innerText=count+"%";}
+},20);
+});
+started=true;
+}
+});
+
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2+1,
+speedX:Math.random()*0.5-0.25,
+speedY:Math.random()*0.5-0.25
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#38bdf8";
+particles.forEach(p=>{
+p.x+=p.speedX;
+p.y+=p.speedY;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+    </html>
