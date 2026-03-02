@@ -3,164 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lakshay | Tech Explorer</title>
+<title>Lakshay | Hacker Mode</title>
 
 <style>
-:root {
-    --bg: #0f172a;
-    --card: rgba(255,255,255,0.05);
-    --text: #ffffff;
-    --accent: #38bdf8;
+:root{
+  --bg:#000;
+  --text:#00ff99;
+  --card-bg:rgba(0,0,0,0.7);
 }
 
-.light-mode {
-    --bg: #f1f5f9;
-    --card: rgba(0,0,0,0.05);
-    --text: #0f172a;
-    --accent: #0ea5e9;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: monospace;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+body{
+  background:black;
+  color:var(--text);
+  overflow:hidden;
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    transition: 0.4s ease;
-    overflow-x: hidden;
+/* MATRIX CANVAS */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
 }
 
-/* Background Animation */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 20% 20%, var(--accent), transparent 40%);
-    animation: move 10s infinite alternate ease-in-out;
-    z-index: -1;
-    opacity: 0.15;
+/* 3D CARD */
+.container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  perspective:1000px;
 }
 
-@keyframes move {
-    from { transform: translate(0,0); }
-    to { transform: translate(-100px,-100px); }
+.card{
+  width:350px;
+  height:450px;
+  background:var(--card-bg);
+  backdrop-filter:blur(5px);
+  border:1px solid #00ff99;
+  border-radius:20px;
+  transform-style:preserve-3d;
+  transition:transform 0.5s;
+  padding:20px;
+  text-align:center;
 }
 
-/* Container */
-.container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.card:hover{
+  transform:rotateY(15deg) rotateX(10deg);
 }
 
-.card {
-    background: var(--card);
-    backdrop-filter: blur(15px);
-    padding: 50px 40px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 600px;
-    animation: fadeIn 1.5s ease;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+h1{
+  margin-top:20px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+.chatbox{
+  margin-top:20px;
+  height:150px;
+  overflow-y:auto;
+  border:1px solid #00ff99;
+  padding:10px;
+  font-size:14px;
+  text-align:left;
 }
 
-h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
+input{
+  width:100%;
+  padding:8px;
+  margin-top:10px;
+  background:black;
+  border:1px solid #00ff99;
+  color:#00ff99;
 }
 
-h1 span {
-    color: var(--accent);
-}
-
-h2 {
-    font-weight: normal;
-    margin-bottom: 20px;
-}
-
-p {
-    margin: 15px 0;
-    line-height: 1.6;
-    font-size: 17px;
-}
-
-/* Button */
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-    border-radius: 30px;
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
-
-.btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px var(--accent);
-}
-
-/* Toggle Switch */
-.toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    background: var(--card);
-    padding: 10px 15px;
-    border-radius: 30px;
-    font-size: 14px;
-    backdrop-filter: blur(10px);
-}
-
-/* Responsive */
-@media(max-width: 600px) {
-    h1 { font-size: 34px; }
-    .card { padding: 30px 20px; }
+button{
+  margin-top:8px;
+  padding:5px 10px;
+  background:#00ff99;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
 }
 </style>
 </head>
-
 <body>
 
-<div class="toggle" onclick="toggleMode()">🌙 / ☀ Mode</div>
+<canvas id="matrix"></canvas>
 
 <div class="container">
-    <div class="card">
-        <h1>Hi, I'm <span>Lakshay</span> 👋</h1>
-        <h2>Grade 9 Student | Future Tech Innovator</h2>
+  <div class="card">
+    <h1>Hi, I'm Lakshay 👾</h1>
+    <p>Grade 9 | Future AI Developer</p>
 
-        <p>
-            I am passionate about coding and exploring the world of technology.
-            I love learning how websites, apps, and software are built.
-        </p>
-
-        <p>
-            Currently diving into HTML & CSS and dreaming big about becoming
-            a professional developer in the future.
-        </p>
-
-        <a href="#" class="btn">Connect With Me</a>
-    </div>
+    <div class="chatbox" id="chat"></div>
+    <input type="text" id="userInput" placeholder="Ask me something...">
+    <button onclick="chat()">Send</button>
+  </div>
 </div>
 
 <script>
-function toggleMode() {
-    document.body.classList.toggle("light-mode");
+/* MATRIX RAIN EFFECT */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 14;
+const columns = canvas.width/fontSize;
+const drops = [];
+
+for(let x=0; x<columns; x++)
+  drops[x]=1;
+
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#00ff99";
+  ctx.font=fontSize+"px monospace";
+  for(let i=0;i<drops.length;i++){
+    const text=letters.charAt(Math.floor(Math.random()*letters.length));
+    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+      drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(draw,33);
+
+/* MINI AI CHATBOT */
+function chat(){
+  let input=document.getElementById("userInput").value;
+  let chatbox=document.getElementById("chat");
+
+  if(input.trim()==="") return;
+
+  chatbox.innerHTML+="<div>> "+input+"</div>";
+
+  let response="I'm still learning 🤖";
+
+  input=input.toLowerCase();
+
+  if(input.includes("name")) response="My name is Lakshay!";
+  else if(input.includes("grade")) response="I'm in Grade 9.";
+  else if(input.includes("coding")) response="I love coding and technology!";
+  else if(input.includes("ai")) response="AI is the future 🚀";
+  else if(input.includes("hello")) response="Hello there 👋";
+
+  setTimeout(()=>{
+    chatbox.innerHTML+="<div>"+response+"</div>";
+    chatbox.scrollTop=chatbox.scrollHeight;
+  },500);
+
+  document.getElementById("userInput").value="";
 }
 </script>
 
