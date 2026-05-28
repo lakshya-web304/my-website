@@ -208,7 +208,9 @@ font-size:120px;
 
 </head>
 
-<body>
+<!-- MUSIC START ON TOUCH -->
+
+<body ontouchstart="document.getElementById('music').play()">
 
 <!-- MATRIX BACKGROUND -->
 
@@ -248,7 +250,7 @@ ERROR 404
 
 <!-- MUSIC -->
 
-<audio id="music" autoplay loop hidden>
+<audio id="music" loop hidden>
 
 <source src="music.mp3" type="audio/mpeg">
 
@@ -332,14 +334,6 @@ setInterval(draw,33);
 /* MUSIC */
 
 const music = document.getElementById("music");
-
-/* AUTO PLAY */
-
-window.addEventListener("load",()=>{
-
-music.play().catch(()=>{});
-
-});
 
 /* DOUBLE TAP = MUSIC OFF */
 
