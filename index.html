@@ -1,469 +1,400 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>LAKSHYA GARG | Future Software Engineer</title>
+<meta charset="UTF-8">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+<title>Lakshya Garg</title>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
-      scroll-behavior:smooth;
-    }
+<style>
 
-    body{
-      background:#050816;
-      color:white;
-      overflow-x:hidden;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:monospace;
+scroll-behavior:smooth;
+}
 
-    body::before{
-      content:'';
-      position:fixed;
-      width:500px;
-      height:500px;
-      background:#00c3ff30;
-      filter:blur(120px);
-      top:-200px;
-      right:-100px;
-      z-index:-1;
-    }
+body{
 
-    body::after{
-      content:'';
-      position:fixed;
-      width:500px;
-      height:500px;
-      background:#8a2be230;
-      filter:blur(120px);
-      bottom:-200px;
-      left:-100px;
-      z-index:-1;
-    }
+background:black;
+overflow-x:hidden;
+color:#00ff66;
 
-    nav{
-      width:100%;
-      padding:20px 8%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:fixed;
-      top:0;
-      background:rgba(0,0,0,0.3);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,0.1);
-      z-index:1000;
-    }
+}
 
-    .logo{
-      font-size:30px;
-      font-weight:800;
-      background:linear-gradient(90deg,#00c3ff,#8a2be2);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      letter-spacing:2px;
-    }
+/* MATRIX BACKGROUND */
 
-    nav ul{
-      display:flex;
-      gap:30px;
-      list-style:none;
-    }
+canvas{
 
-    nav ul li a{
-      text-decoration:none;
-      color:white;
-      transition:0.3s;
-      font-weight:500;
-    }
+position:fixed;
 
-    nav ul li a:hover{
-      color:#00c3ff;
-    }
+top:0;
+left:0;
 
-    .hero{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:60px;
-      padding:120px 8%;
-      flex-wrap:wrap;
-    }
+width:100%;
+height:100%;
 
-    .hero-text{
-      flex:1;
-      min-width:300px;
-    }
+z-index:-1;
 
-    .hero-text h3{
-      color:#00c3ff;
-      font-size:22px;
-      margin-bottom:15px;
-      letter-spacing:2px;
-    }
+}
 
-    .hero-text h1{
-      font-size:75px;
-      line-height:1.1;
-      margin-bottom:20px;
-      font-weight:800;
-    }
+/* CENTER */
 
-    .hero-text h1 span{
-      background:linear-gradient(90deg,#00c3ff,#8a2be2);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+.center{
 
-    .hero-text p{
-      font-size:18px;
-      color:#cfcfcf;
-      line-height:1.8;
-      margin-bottom:35px;
-      max-width:700px;
-    }
+height:100vh;
 
-    .btns{
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-    }
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
 
-    .btn{
-      padding:15px 35px;
-      border-radius:50px;
-      text-decoration:none;
-      font-weight:600;
-      transition:0.4s;
-    }
+text-align:center;
 
-    .btn1{
-      background:linear-gradient(90deg,#00c3ff,#8a2be2);
-      color:white;
-      box-shadow:0 0 25px #00c3ff60;
-    }
+padding:20px;
 
-    .btn1:hover{
-      transform:translateY(-5px);
-    }
+}
 
-    .btn2{
-      border:2px solid #00c3ff;
-      color:#00c3ff;
-    }
+/* NAME */
 
-    .btn2:hover{
-      background:#00c3ff;
-      color:black;
-      transform:translateY(-5px);
-    }
+h1{
 
-    .card{
-      width:350px;
-      height:420px;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:30px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      backdrop-filter:blur(10px);
-      box-shadow:0 0 40px rgba(0,0,0,0.4);
-      position:relative;
-      overflow:hidden;
-    }
+font-size:80px;
 
-    .card::before{
-      content:'';
-      position:absolute;
-      width:180px;
-      height:180px;
-      background:#00c3ff;
-      border-radius:50%;
-      filter:blur(100px);
-      top:-50px;
-      right:-50px;
-    }
+color:#00ff66;
 
-    .card::after{
-      content:'';
-      position:absolute;
-      width:180px;
-      height:180px;
-      background:#8a2be2;
-      border-radius:50%;
-      filter:blur(100px);
-      bottom:-50px;
-      left:-50px;
-    }
+text-shadow:
+0 0 10px #00ff66,
+0 0 30px #00ff66,
+0 0 60px #00ff66;
 
-    .card-content{
-      text-align:center;
-      z-index:2;
-      padding:30px;
-    }
+animation:glow 2s infinite alternate;
 
-    .circle{
-      width:130px;
-      height:130px;
-      border-radius:50%;
-      background:linear-gradient(135deg,#00c3ff,#8a2be2);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-size:40px;
-      font-weight:800;
-      margin:auto;
-      margin-bottom:25px;
-      box-shadow:0 0 30px #00c3ff70;
-    }
+}
 
-    .card-content h2{
-      margin-bottom:15px;
-      font-size:28px;
-    }
+/* GLOW */
 
-    .card-content p{
-      color:#d7d7d7;
-      line-height:1.7;
-    }
+@keyframes glow{
 
-    section{
-      padding:100px 8%;
-    }
+from{
 
-    .title{
-      text-align:center;
-      font-size:50px;
-      margin-bottom:60px;
-      font-weight:800;
-    }
+text-shadow:
+0 0 10px #00ff66,
+0 0 30px #00ff66;
 
-    .title span{
-      color:#00c3ff;
-    }
+}
 
-    .boxes{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:30px;
-    }
+to{
 
-    .box{
-      background:rgba(255,255,255,0.05);
-      padding:35px;
-      border-radius:25px;
-      border:1px solid rgba(255,255,255,0.1);
-      transition:0.4s;
-    }
+text-shadow:
+0 0 20px #00ff66,
+0 0 50px #00ff66,
+0 0 80px #00ff66;
 
-    .box:hover{
-      transform:translateY(-10px);
-      box-shadow:0 0 25px #00c3ff30;
-    }
+}
 
-    .box h2{
-      color:#00c3ff;
-      margin-bottom:15px;
-      font-size:28px;
-    }
+}
 
-    .box p{
-      line-height:1.8;
-      color:#d7d7d7;
-    }
+/* ERROR TEXT */
 
-    .skills{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:20px;
-    }
+.error-text{
 
-    .skill{
-      padding:15px 28px;
-      border-radius:50px;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
-      transition:0.4s;
-      font-weight:600;
-    }
+margin-top:120px;
 
-    .skill:hover{
-      transform:scale(1.08);
-      background:linear-gradient(90deg,#00c3ff,#8a2be2);
-    }
+font-size:60px;
 
-    footer{
-      text-align:center;
-      padding:40px;
-      border-top:1px solid rgba(255,255,255,0.1);
-      color:#bcbcbc;
-    }
+color:#00ff66;
 
-    @media(max-width:768px){
+text-shadow:
+0 0 10px #00ff66,
+0 0 30px #00ff66;
 
-      nav ul{
-        display:none;
-      }
+opacity:0;
 
-      .hero-text h1{
-        font-size:50px;
-      }
+transform:translateY(100px);
 
-      .title{
-        font-size:38px;
-      }
+transition:1s;
 
-    }
+text-align:center;
 
-  </style>
+}
+
+/* SKULL */
+
+.skull{
+
+font-size:180px;
+
+color:#00ff66;
+
+text-shadow:
+0 0 20px #00ff66,
+0 0 50px #00ff66;
+
+margin-top:80px;
+
+opacity:0;
+
+transform:scale(0.5);
+
+transition:1s;
+
+text-align:center;
+
+}
+
+/* SHOW */
+
+.show{
+
+opacity:1;
+
+transform:
+translateY(0)
+scale(1);
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:40px;
+
+text-align:center;
+
+font-size:22px;
+
+color:#00ff66;
+
+text-shadow:
+0 0 10px #00ff66,
+0 0 30px #00ff66;
+
+margin-top:200px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+h1{
+
+font-size:45px;
+
+}
+
+.error-text{
+
+font-size:40px;
+
+}
+
+.skull{
+
+font-size:120px;
+
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-  <nav>
+<!-- MATRIX BACKGROUND -->
 
-    <div class="logo">LAKSHYA.</div>
+<canvas id="matrix"></canvas>
 
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Skills</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+<!-- MAIN -->
 
-  </nav>
+<div class="center">
 
-  <section class="hero">
+<h1>LAKSHYA GARG</h1>
 
-    <div class="hero-text">
+</div>
 
-      <h3>WELCOME TO MY DIGITAL WORLD...</h3>
+<!-- ERROR -->
 
-      <h1>
-        I'M <span>LAKSHYA GARG</span>
-      </h1>
+<div class="error-text">
 
-      <p>
-        Class 10 Student... Future Software Engineer...
-        Passionate about coding, technology, creativity,
-        innovation, and modern web development...
-        Dreaming big... Building the future with programming...
-      </p>
+ERROR 404
 
-      <div class="btns">
+</div>
 
-        <a href="#" class="btn btn1">Explore More</a>
+<!-- SKULL -->
 
-        <a href="#" class="btn btn2">Contact Me</a>
+<div class="skull">
 
-      </div>
+☠
 
-    </div>
+</div>
 
-    <div class="card">
+<!-- FOOTER -->
 
-      <div class="card-content">
+<footer>
 
-        <div class="circle">
-          LG
-        </div>
+© 2026 Lakshya Garg
 
-        <h2>Future Software Engineer</h2>
+</footer>
 
-        <p>
-          Creating futuristic digital experiences with
-          creativity, dedication, and next-level coding skills...
-        </p>
+<!-- MUSIC -->
 
-      </div>
+<audio id="music" autoplay loop hidden>
 
-    </div>
+<source src="music.mp3" type="audio/mpeg">
 
-  </section>
+</audio>
 
-  <section>
+<script>
 
-    <h1 class="title">
-      About <span>Me</span>
-    </h1>
+/* MATRIX */
 
-    <div class="boxes">
+const canvas = document.getElementById("matrix");
 
-      <div class="box">
+const ctx = canvas.getContext("2d");
 
-        <h2>Who Am I?</h2>
+canvas.width = window.innerWidth;
 
-        <p>
-          My name is LAKSHYA GARG...
-          I am a Class 10 student with a strong passion for
-          technology, coding, and software engineering...
-        </p>
+canvas.height = window.innerHeight;
 
-      </div>
+const letters =
+"アァカサタナハマヤャラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      <div class="box">
+const fontSize = 16;
 
-        <h2>My Mission</h2>
+const columns = canvas.width / fontSize;
 
-        <p>
-          To become a successful Software Engineer...
-          build powerful applications...
-          and create innovative technology solutions...
-        </p>
+const drops = [];
 
-      </div>
+for(let i = 0; i < columns; i++){
 
-      <div class="box">
+drops[i] = 1;
 
-        <h2>My Vision</h2>
+}
 
-        <p>
-          Learning web development, programming,
-          AI, and future technologies to achieve big goals...
-        </p>
+function draw(){
 
-      </div>
+ctx.fillStyle = "rgba(0,0,0,0.08)";
 
-    </div>
+ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  </section>
+ctx.fillStyle = "#00ff66";
 
-  <section>
+ctx.font = fontSize + "px monospace";
 
-    <h1 class="title">
-      My <span>Skills</span>
-    </h1>
+for(let i = 0; i < drops.length; i++){
 
-    <div class="skills">
+const text = letters.charAt(
 
-      <div class="skill">HTML5</div>
-      <div class="skill">CSS3</div>
-      <div class="skill">JavaScript</div>
-      <div class="skill">Creative Thinking</div>
-      <div class="skill">UI / UX Design</div>
-      <div class="skill">Future Coding Expert</div>
+Math.floor(Math.random() * letters.length)
 
-    </div>
+);
 
-  </section>
+ctx.fillText(
 
-  <footer>
+text,
 
-    © 2026 LAKSHYA GARG • Future Software Engineer • Pro Max Portfolio Website
+i * fontSize,
 
-  </footer>
+drops[i] * fontSize
+
+);
+
+if(
+
+drops[i] * fontSize > canvas.height
+
+&& Math.random() > 0.975
+
+){
+
+drops[i] = 0;
+
+}
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,33);
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+
+/* AUTO PLAY */
+
+window.addEventListener("load",()=>{
+
+music.play().catch(()=>{});
+
+});
+
+/* DOUBLE TAP = MUSIC OFF */
+
+let lastTap = 0;
+
+document.addEventListener("touchend",()=>{
+
+let currentTime = new Date().getTime();
+
+let tapLength = currentTime - lastTap;
+
+if(tapLength < 300 && tapLength > 0){
+
+music.pause();
+
+}
+
+lastTap = currentTime;
+
+});
+
+/* SCROLL EFFECT */
+
+const errorText =
+
+document.querySelector(".error-text");
+
+const skull =
+
+document.querySelector(".skull");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY > 50){
+
+errorText.classList.add("show");
+
+skull.classList.add("show");
+
+}
+
+});
+
+/* RESIZE */
+
+window.addEventListener("resize",()=>{
+
+canvas.width = window.innerWidth;
+
+canvas.height = window.innerHeight;
+
+});
+
+</script>
 
 </body>
+
 </html>
