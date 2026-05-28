@@ -20,27 +20,20 @@ scroll-behavior:smooth;
 }
 
 body{
-
 background:black;
 overflow-x:hidden;
 color:#00ff66;
-
 }
 
 /* MATRIX BACKGROUND */
 
 canvas{
-
 position:fixed;
-
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 z-index:-1;
-
 }
 
 /* CENTER */
@@ -185,21 +178,15 @@ margin-top:200px;
 @media(max-width:768px){
 
 h1{
-
 font-size:45px;
-
 }
 
 .error-text{
-
 font-size:40px;
-
 }
 
 .skull{
-
 font-size:120px;
-
 }
 
 }
@@ -208,9 +195,7 @@ font-size:120px;
 
 </head>
 
-<!-- MUSIC START ON TOUCH -->
-
-<body ontouchstart="document.getElementById('music').play()">
+<body onclick="startMusic()">
 
 <!-- MATRIX BACKGROUND -->
 
@@ -296,27 +281,18 @@ ctx.font = fontSize + "px monospace";
 for(let i = 0; i < drops.length; i++){
 
 const text = letters.charAt(
-
 Math.floor(Math.random() * letters.length)
-
 );
 
 ctx.fillText(
-
 text,
-
 i * fontSize,
-
 drops[i] * fontSize
-
 );
 
 if(
-
 drops[i] * fontSize > canvas.height
-
 && Math.random() > 0.975
-
 ){
 
 drops[i] = 0;
@@ -334,6 +310,12 @@ setInterval(draw,33);
 /* MUSIC */
 
 const music = document.getElementById("music");
+
+function startMusic(){
+
+music.play();
+
+}
 
 /* DOUBLE TAP = MUSIC OFF */
 
@@ -358,11 +340,9 @@ lastTap = currentTime;
 /* SCROLL EFFECT */
 
 const errorText =
-
 document.querySelector(".error-text");
 
 const skull =
-
 document.querySelector(".skull");
 
 window.addEventListener("scroll",()=>{
