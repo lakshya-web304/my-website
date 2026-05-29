@@ -167,21 +167,6 @@ margin-top:200px;
 
 }
 
-/* AUDIO PLAYER */
-
-audio{
-
-position:fixed;
-
-bottom:20px;
-left:50%;
-
-transform:translateX(-50%);
-
-width:300px;
-
-}
-
 /* MOBILE */
 
 @media(max-width:768px){
@@ -198,17 +183,13 @@ font-size:40px;
 font-size:120px;
 }
 
-audio{
-width:90%;
-}
-
 }
 
 </style>
 
 </head>
 
-<body>
+<body onclick="startMusic()" ontouchstart="startMusic()">
 
 <!-- MATRIX BACKGROUND -->
 
@@ -248,7 +229,7 @@ ERROR 404
 
 <!-- MUSIC -->
 
-<audio id="music" controls loop>
+<audio id="music" loop hidden>
 
 <source src="Music.mp3" type="audio/mpeg">
 
@@ -319,6 +300,46 @@ drops[i]++;
 }
 
 setInterval(draw,33);
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+
+let musicStarted = false;
+
+function startMusic(){
+
+if(!musicStarted){
+
+music.volume = 1;
+
+music.play();
+
+musicStarted = true;
+
+}
+
+}
+
+/* DOUBLE TAP = MUSIC OFF */
+
+let lastTap = 0;
+
+document.addEventListener("touchend",()=>{
+
+let currentTime = new Date().getTime();
+
+let tapLength = currentTime - lastTap;
+
+if(tapLength < 300 && tapLength > 0){
+
+music.pause();
+
+}
+
+lastTap = currentTime;
+
+});
 
 /* SCROLL EFFECT */
 
