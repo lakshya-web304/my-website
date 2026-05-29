@@ -346,13 +346,19 @@ setInterval(draw,33);
 
 const music = document.getElementById("music");
 
+/* SINGLE TAP = MUSIC ON */
+
 document.body.addEventListener("click", function(){
+
+if(music.paused){
 
 music.play();
 
 document.getElementById("tapText").style.display = "none";
 
-}, { once:true });
+}
+
+});
 
 /* DOUBLE TAP = MUSIC OFF */
 
@@ -387,6 +393,7 @@ window.addEventListener("scroll",()=>{
 if(window.scrollY > 50){
 
 errorText.classList.add("show");
+  
 
 skull.classList.add("show");
 
