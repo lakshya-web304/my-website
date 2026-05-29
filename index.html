@@ -214,6 +214,10 @@ font-size:40px;
 font-size:120px;
 }
 
+#tapText{
+font-size:16px;
+}
+
 }
 
 </style>
@@ -266,7 +270,7 @@ ERROR 404
 
 <!-- MUSIC -->
 
-<audio id="music" autoplay loop>
+<audio id="music" loop>
 
 <source src="Music.mp3" type="audio/mpeg">
 
@@ -274,7 +278,7 @@ ERROR 404
 
 <script>
 
-/* MATRIX */
+/* MATRIX BACKGROUND */
 
 const canvas = document.getElementById("matrix");
 
@@ -352,7 +356,7 @@ music.play();
 
 musicStarted = true;
 
-document.getElementById("tapText").style.display="none";
+document.getElementById("tapText").style.display = "none";
 
 }
 
