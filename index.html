@@ -87,6 +87,37 @@ text-shadow:
 
 }
 
+/* TAP TEXT */
+
+#tapText{
+
+position:fixed;
+bottom:20px;
+left:50%;
+
+transform:translateX(-50%);
+
+color:#00ff66;
+font-size:20px;
+
+text-shadow:
+0 0 10px #00ff66,
+0 0 30px #00ff66;
+
+animation:blink 1s infinite;
+
+z-index:1000;
+
+}
+
+@keyframes blink{
+
+50%{
+opacity:0;
+}
+
+}
+
 /* ERROR TEXT */
 
 .error-text{
@@ -195,6 +226,12 @@ font-size:120px;
 
 <canvas id="matrix"></canvas>
 
+<!-- TAP TEXT -->
+
+<div id="tapText">
+TAP ANYWHERE
+</div>
+
 <!-- MAIN -->
 
 <div class="center">
@@ -229,7 +266,7 @@ ERROR 404
 
 <!-- MUSIC -->
 
-<audio id="music" loop hidden>
+<audio id="music" autoplay loop>
 
 <source src="Music.mp3" type="audio/mpeg">
 
@@ -311,11 +348,11 @@ function startMusic(){
 
 if(!musicStarted){
 
-music.volume = 1;
-
 music.play();
 
 musicStarted = true;
+
+document.getElementById("tapText").style.display="none";
 
 }
 
