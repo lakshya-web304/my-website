@@ -64,8 +64,6 @@ animation:glow 2s infinite alternate;
 
 }
 
-/* GLOW */
-
 @keyframes glow{
 
 from{
@@ -198,6 +196,12 @@ margin-top:200px;
 
 }
 
+/* HIDDEN AUDIO */
+
+audio{
+display:none;
+}
+
 /* MOBILE */
 
 @media(max-width:768px){
@@ -226,14 +230,16 @@ font-size:16px;
 
 <body onclick="startMusic()" ontouchstart="startMusic()">
 
-<!-- MATRIX BACKGROUND -->
+<!-- MATRIX -->
 
 <canvas id="matrix"></canvas>
 
-<!-- TAP TEXT -->
+<!-- TAP -->
 
 <div id="tapText">
+
 TAP ANYWHERE
+
 </div>
 
 <!-- MAIN -->
@@ -278,7 +284,7 @@ ERROR 404
 
 <script>
 
-/* MATRIX BACKGROUND */
+/* MATRIX */
 
 const canvas = document.getElementById("matrix");
 
@@ -351,6 +357,10 @@ let musicStarted = false;
 function startMusic(){
 
 if(!musicStarted){
+
+music.muted = false;
+
+music.volume = 1;
 
 music.play();
 
